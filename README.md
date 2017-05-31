@@ -169,7 +169,7 @@ docker exec -it mule-ee bash
 * [Mule ESB User Guide](https://docs.mulesoft.com/mule-user-guide/v/3.8/)
 * Container is based from [wslph/ubuntu:xenial-latest](https://hub.docker.com/r/wslph/ubuntu)
 * Container is installed with the latest [Oracle JDK8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-* Mule Agent version is **1.6.4**
+* Mule Agent version is **1.7.0**
 
 ---
 # About
