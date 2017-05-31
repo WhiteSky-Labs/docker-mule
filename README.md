@@ -109,15 +109,16 @@ By default, enterprise edition of Mule ESB Server will run in trial mode. If you
 
 **Data Store**
 
-Mule ESB Server is an application hosting software and as such you don't want to lose your code when the docker container is stopped/deleted. To avoid losing any data, you should mount a volume at,
+Mule ESB Server is an application hosting software and as such you don't want to lose your code when the docker container is stopped/deleted. To avoid losing any data, you should mount volume these paths below:
 
 * `/opt/mule/apps`
 * `/opt/mule/domains`
 * `/opt/mule/conf`
 * `/opt/mule/logs`
 * `/opt/mule/patches`
+* `/opt/mule/.mule`
 
-Volumes can be mounted in docker by specifying the `--volume` option in the docker run command.
+Volumes can be mounted in docker by specifying the `--volume` (or `-v`) option in the docker run command.
 
 ```bash
 docker run --restart=always --name mule-ee -d \
@@ -129,6 +130,7 @@ docker run --restart=always --name mule-ee -d \
     --volume ~/mule/conf:/opt/mule/conf \
     --volume ~/mule/logs:/opt/mule/logs \
     --volume ~/mule/patches:/opt/mule/patches \    
+    --volume ~/mule/.mule:/opt/mule/.mule \    
     wslph/mule:3.8.4-ee && docker logs -f mule-ee
 ```
 
