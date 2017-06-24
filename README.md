@@ -153,6 +153,8 @@ Below is the complete list of available options that can be used to customize yo
 | `APP_CONFIG_PATH` | by default its value is empty, but it can be overwritten. However anything set here is relative to `/opt/mule/conf/` . This is accessible within Mule environment and mule application via `${mule.config.path}` |
 | `MULE_STARTUP_ENV_CONFIG` | This is optional. Useful, when you need to specify some environment variable to mule upon start. For example you can pass a `-M-Dmule.vault.key=mulesoft` parameter. However, that this does not override the other environment variable in this table. |
 | `MULE_ENV_OVERRIDE_DEFAULT` | 0 by default. If set to 1, it will load the existing host resources (e.g., `apps`, `domains`, and `conf`) of the host specified path at `--volume`. |
+| `MULE_AMC_TOKEN` | If you want to register this container to Anypoint Management Center, pass the token here. |
+| `MULE_AMC_NAME` | Specify the name you want this container to use at Anypoint Management Center. By default, it will generate its own name with a prefix of `MULE-ESB-` and appended with timestamp to register. |
 
 ---
 # Maintenance
