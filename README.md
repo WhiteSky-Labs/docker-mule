@@ -62,25 +62,20 @@ Your docker host needs to have at least 2GB (or more) of available RAM to run Mu
 
 Automated builds of the image are available on [Dockerhub](https://hub.docker.com/r/wslph/mule) and is the recommended method of installation.
 
-`------------------------------------------------------------------------------`
-
-__To pull the latest build for 3.9.0-ee__
+---
+To pull the latest build for 3.9.0-ee
 
 ```bash
 docker pull wslph/mule:3.9.0-ee
 ```
-
-`------------------------------------------------------------------------------`
-
-__To pull the container built on 2018-02-02 (YYYY-MM-DD).__
+---
+To pull the container built on 2018-02-02 (YYYY-MM-DD).
 
 ```bash
 docker pull wslph/mule:3.9.0-ee-2018-02-02
 ```
-
-`------------------------------------------------------------------------------`
-
-__Example 1 : Launching  Mule ESB Server runtime container for Community Edition__
+---
+Example 1 : Launching  Mule ESB Server runtime container for Community Edition
 
 ```bash
 docker run --restart=always --name mule-ce -d \
@@ -88,10 +83,8 @@ docker run --restart=always --name mule-ce -d \
     --env 'MULE_ENV=dev' \
     wslph/mule:3.9.0-ce && docker logs -f mule-ce
 ```
-
-`------------------------------------------------------------------------------`
-
-__Example 2 : Launching  Mule ESB Server runtime container for Enterprise Edition__
+---
+Example 2 : Launching  Mule ESB Server runtime container for Enterprise Edition
 
 ```bash
 docker run --restart=always --name mule-ee -d \
@@ -99,10 +92,8 @@ docker run --restart=always --name mule-ee -d \
     --env 'MULE_ENV=dev' \
     wslph/mule:3.9.0-ee && docker logs -f mule-ee
 ```
-
-`------------------------------------------------------------------------------`
-
-__Example 3 : Attaching container to host network__
+---
+Example 3 : Attaching container to host network
 
 ```bash
 docker run --restart=always --name mule-ee -d \
@@ -111,7 +102,7 @@ docker run --restart=always --name mule-ee -d \
     wslph/mule:3.9.0-ee && docker logs -f mule-ee
 ```
 
-`------------------------------------------------------------------------------`
+---
 
 *Please refer to [Available Configuration Parameters](#available-configuration-parameters) to understand `MULE_ENV` and other configuration options*
 
@@ -136,6 +127,7 @@ Mule ESB Server is an application hosting software and as such you don't want to
 * `/opt/mule/conf`
 * `/opt/mule/logs`
 * `/opt/mule/patches`
+* `/opt/mule/.mule`
 
 Volumes can be mounted in docker by specifying the `--volume` option in the docker run command.
 
@@ -158,10 +150,12 @@ docker run --restart=always --name mule-ee -d \
     wslph/mule:3.9.0-ee && docker logs -f mule-ee
 ```
 
+---
 **Applying runtime patch**
 
 The `/opt/mule/patches` volume sole purpose is to copy (before the mule runtime is started) its content to `/opt/mule/lib/user` and applies to specific version of mule runtime (e.g., `3.6.2-ee` requires applying `SE-3341-3.6.2.jar` that fixes the mule application filename issue). This allows maintenance of patch to an existing Mule runtime, requiring only a `docker restart <mule-container>`
 
+---
 **Registering to Anypoint Runtime Manager**
 
 If you want to register your Mule ESB container to Anypoint Platform / Anypoint Runtime Manager, here's an example:
@@ -181,9 +175,21 @@ docker run --restart=always --name mule-ee -d \
     wslph/mule:3.9.0-ee && docker logs -f mule-ee
 ```
 
+---
 **Registering to Mule Management Console**
 
-If you want to register your Mule ESB container to a MMC server, here's an example:
+If you want to register your Mule ESB container to a MMC server.
+
+You need to specify the following environment variables:
+- `MULE_ESB_NAME`
+- `MULE_MMC_AGENT_HOST`
+- `MULE_MMC_AGENT_PORT`
+- `MULE_MMC_URL`
+- `MULE_MMC_USERNAME` and `MULE_MMC_PASSWORD` OR `MULE_MMC_HEADER_AUTH`
+
+For further explanation of each environment variable, please take a look at *Available Configuration Parameters* section.
+
+Here's an example:
 
 ```bash
 docker run --restart=always --name mule-ee -d \
@@ -223,16 +229,7 @@ docker run --restart=always --name mule-ee -d \
     --volume ~/mule/.mule:/opt/mule/.mule \
     wslph/mule:3.9.0-ee && docker logs -f mule-ee
 ```
-
-You need to specify the following environment variables:
-- `MULE_ESB_NAME`
-- `MULE_MMC_AGENT_HOST`
-- `MULE_MMC_AGENT_PORT`
-- `MULE_MMC_URL`
-- `MULE_MMC_USERNAME` and `MULE_MMC_PASSWORD` OR `MULE_MMC_HEADER_AUTH`
-
-For further explanation of each environment variable, please take a look at *Available Configuration Parameters* section.
-
+---
 **IMPORTANT:**
 
 In order to execute the registration script to MMC server, you need to do the following:
@@ -268,7 +265,6 @@ Below is the complete list of available options that can be used to customize yo
 | `MULE_MMC_HEADER_AUTH` | Specify the default `header` for authorization to your MMC. Note: When specified, this will disable `MULE_MMC_USERNAME` and `MULE_MMC_PASSWORD`. For example, `Authorization:Basic YWRtaW46YWRtaW4=`|
 | `MULE_MMC_SERVER_GROUP` | If specified, server will be registered and added into the specified server group. |
 
----
 # Maintenance
 
 **Shell Access**
