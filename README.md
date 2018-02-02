@@ -112,6 +112,7 @@ docker run --restart=always --name mule-ee -d \
 ```
 
 `------------------------------------------------------------------------------`
+
 *Please refer to [Available Configuration Parameters](#available-configuration-parameters) to understand `MULE_ENV` and other configuration options*
 
 __NOTE__: Please allow a couple of minutes for the Mule ESB Server runtime to start.
